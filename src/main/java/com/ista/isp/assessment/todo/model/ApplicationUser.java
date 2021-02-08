@@ -3,7 +3,6 @@ package com.ista.isp.assessment.todo.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -34,8 +33,8 @@ public class ApplicationUser extends BaseEntity {
 
 	@Column(name = "password")
 	private String password;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+
+	@OneToMany(mappedBy = "applicationUser")
 	private Set<Task> taskList = new HashSet<>();
 
 }

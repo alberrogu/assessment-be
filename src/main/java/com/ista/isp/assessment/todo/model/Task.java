@@ -2,6 +2,7 @@ package com.ista.isp.assessment.todo.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -30,9 +31,9 @@ public class Task extends BaseEntity {
 	/** The default serial version UID */
 	private static final long serialVersionUID = 1L;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
-	private ApplicationUser user;
+	private ApplicationUser applicationUser;
 
 	@Column(name = "descritpion")
 	private String description;
@@ -47,7 +48,7 @@ public class Task extends BaseEntity {
 	private Date completedDate;
 
 	@Column(name = "is_completed")
-	private Boolean isCompleted;
+	private Boolean isCompleted = false;
 
 	@PrePersist
 	protected void onCreate() {
