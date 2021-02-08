@@ -12,4 +12,6 @@ public interface ApplicationUserService {
 
 	boolean existUser(Long userId);
 
+	ApplicationUser getUserById(Long userId);
+
 }

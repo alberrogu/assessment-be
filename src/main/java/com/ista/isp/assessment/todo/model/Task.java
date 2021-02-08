@@ -31,9 +31,8 @@ public class Task extends BaseEntity {
 	/** The default serial version UID */
 	private static final long serialVersionUID = 1L;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private ApplicationUser applicationUser;
+	@Column(name = "user_id")
+	private Long userId;
 
 	@Column(name = "descritpion")
 	private String description;

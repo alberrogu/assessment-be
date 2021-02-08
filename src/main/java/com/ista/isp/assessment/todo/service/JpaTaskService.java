@@ -25,6 +25,10 @@ public class JpaTaskService implements TaskService {
 		if (task.getDescription() == null || task.getDescription().isBlank()) {
 			throw new ValidationException("Description can not be empty");
 		}
+		if (task.getUserId() == null || !userService.existUser(task.getUserId())) {
+
+			throw new ValidationException("User not exists");
+		}
 		Task savedTask = taskRepository.save(task);
 		return savedTask;
 	}
@@ -47,11 +51,10 @@ public class JpaTaskService implements TaskService {
 
 	@Override
 	public Set<Task> getUserTasks(Long userId) {
-		if (userId == null) {
-			throw new ValidationException("User can not be null");
+		if (userId == null || !userService.existUser(userId)) {
+			throw new ValidationException("User not exists");
 		}
-		return getTasks().stream().filter(task -> task.getApplicationUser().getId().equals(userId))
-				.collect(Collectors.toSet());
+		return getTasks().stream().filter(task -> task.getUserId().equals(userId)).collect(Collectors.toSet());
 	}
 
 	@Override
@@ -62,7 +65,7 @@ public class JpaTaskService implements TaskService {
 		if (!exist(task)) {
 			throw new ValidationException("Task not exist");
 		}
-		if (!userService.existUser(task.getApplicationUser().getId())) {
+		if (!userService.existUser(task.getUserId())) {
 			throw new ValidationException("User not found");
 		}
 		if (task.getIsCompleted() && task.getCompletedDate() == null) {

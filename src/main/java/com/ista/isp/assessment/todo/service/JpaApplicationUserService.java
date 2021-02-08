@@ -49,6 +49,11 @@ public class JpaApplicationUserService implements ApplicationUserService {
 	}
 
 	@Override
+	public ApplicationUser getUserById(Long userId) {
+		return userRepository.findById(userId).orElse(null);
+	}
+
+	@Override
 	public boolean existUser(Long userId) {
 		return userRepository.existsById(userId);
 	}

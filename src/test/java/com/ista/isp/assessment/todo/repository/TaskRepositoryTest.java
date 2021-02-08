@@ -49,7 +49,7 @@ public class TaskRepositoryTest {
 		task.setId(null);
 		task.setCreatedDate(null);
 		task.setModifiedDate(null);
-		task.setApplicationUser(applicationUser);
+		task.setUserId(applicationUser.getId());
 		task = taskRepository.save(task);
 		assertNotNull(task.getId());
 		assertNotNull(task.getCreatedDate());
@@ -61,7 +61,8 @@ public class TaskRepositoryTest {
 		task.setId(null);
 		task.setCreatedDate(null);
 		task.setModifiedDate(null);
-		task.setApplicationUser(applicationUser);
+		task.setUserId(applicationUser.getId());
+		;
 		task = taskRepository.save(task);
 		task.setDescription("new description");
 		task.setCompletedDate(new Date());
@@ -77,7 +78,8 @@ public class TaskRepositoryTest {
 		task.setId(null);
 		task.setCreatedDate(null);
 		task.setModifiedDate(null);
-		task.setApplicationUser(applicationUser);
+		task.setUserId(applicationUser.getId());
+		;
 		task = taskRepository.save(task);
 		Long taskId = task.getId();
 		taskRepository.delete(task);

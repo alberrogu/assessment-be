@@ -50,7 +50,7 @@ public class TaskServiceTest {
 		task.setId(null);
 		task.setCreatedDate(null);
 		task.setModifiedDate(null);
-		task.setApplicationUser(user);
+		task.setUserId(user.getId());
 		when(taskRepository.save(any())).thenReturn(taskSaved(task));
 		// OK
 		Task taskSaved = taskService.createTask(task);
@@ -68,7 +68,7 @@ public class TaskServiceTest {
 		final Task task = TaskTest.createTestTask();
 		task.setCreatedDate(null);
 		task.setModifiedDate(null);
-		task.setApplicationUser(user);
+		task.setUserId(user.getId());
 		task.setId(1L);
 		task.setIsCompleted(true);
 		task.setCreatedDate(new Date());

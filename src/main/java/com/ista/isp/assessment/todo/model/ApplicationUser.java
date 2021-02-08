@@ -34,7 +34,4 @@ public class ApplicationUser extends BaseEntity {
 	@Column(name = "password")
 	private String password;
 
-	@OneToMany(mappedBy = "applicationUser")
-	private Set<Task> taskList = new HashSet<>();
-
 }
